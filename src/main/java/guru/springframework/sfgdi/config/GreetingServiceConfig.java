@@ -18,6 +18,7 @@ import guru.springframework.sfgdi.services.PropertyInjectedGreetingService;
 import guru.springframework.sfgdi.services.SetterInjectedGreetingService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
@@ -25,6 +26,7 @@ import org.springframework.context.annotation.Profile;
  *
  * @author Richard Salac (richard.salac@datera.cz)
  */
+@ImportResource("classpath:sfgdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
     
@@ -70,7 +72,8 @@ public class GreetingServiceConfig {
         return new PrimaryGreetingService();
     }
     
-    @Bean
+    //Moved to XML based configuration
+    //@Bean
     ConstructorGreetingService constructorGreetingService(){
         return new ConstructorGreetingService();
     }
