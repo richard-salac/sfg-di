@@ -18,22 +18,24 @@ import guru.springframework.sfgdi.services.PrimaryGreetingService;
 import guru.springframework.sfgdi.services.PropertyInjectedGreetingService;
 import guru.springframework.sfgdi.services.SetterInjectedGreetingService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.*;
 
 /**
  *
  * @author Richard Salac (richard.salac@datera.cz)
  */
+@EnableConfigurationProperties(SfgConstructorConfig.class)
 @ImportResource("classpath:sfgdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
 
     @Bean
-    FakeDataSource fakeDataSource(SfgConfiguration sfgConfiguration){
+    FakeDataSource fakeDataSource(SfgConstructorConfig sfgConstructorConfig){
         FakeDataSource fakeDataSource = new FakeDataSource();
-        fakeDataSource.setUsername(sfgConfiguration.getUsername());
-        fakeDataSource.setPassword(sfgConfiguration.getPassword());
-        fakeDataSource.setJdbcurl(sfgConfiguration.getJdbcurl());
+        fakeDataSource.setUsername(sfgConstructorConfig.getUsername());
+        fakeDataSource.setPassword(sfgConstructorConfig.getPassword());
+        fakeDataSource.setJdbcurl(sfgConstructorConfig.getJdbcurl());
 
         return fakeDataSource;
     }
