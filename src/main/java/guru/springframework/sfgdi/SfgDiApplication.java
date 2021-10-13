@@ -7,6 +7,8 @@ import guru.springframework.sfgdi.controllers.PetController;
 import guru.springframework.sfgdi.controllers.PropertyInjectedController;
 import guru.springframework.sfgdi.controllers.SetterInjectedController;
 import java.util.stream.Stream;
+
+import guru.springframework.sfgdi.datasource.FakeDataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -52,6 +54,9 @@ public class SfgDiApplication {
                
                 System.out.println(constructorInjectedController.getGreeting());
 
-                
-	}       
+            FakeDataSource fakeDataSource = ctx.getBean(FakeDataSource.class);
+            System.out.println(fakeDataSource.getUsername());
+            System.out.println(fakeDataSource.getPassword());
+            System.out.println(fakeDataSource.getJdbcurl());
+    }
 }
